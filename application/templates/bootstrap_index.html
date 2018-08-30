@@ -1,0 +1,173 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}This is an example page{% endblock %}
+
+{% block styles %}
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/navbar.css') }}">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/slideshow.css') }}">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+
+{% block navbar %}
+	<!-- LOGO AND NAVBAR -->
+	<body background="{{ url_for('static', filename='images/bgimage.jpg') }}">
+	<div id="label">
+		<img src="{{ url_for('static', filename='images/blog-header.png') }}" style="height:70px; width:200px;"/>
+	</div>
+	<div id="nav-bar">
+		<ul>
+			<li><a href="#home" style="background-color: rgb(248, 220, 109);">Halaman Utama</a></li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Download</a>
+			<div class="dropdown-content">
+				<a href="#link1">Audio Kajian</a>
+				<a href="#link1">Software Lisensi Gratis</a>
+			</div>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Tanya Jawab Islam</a>
+			<div class="dropdown-content">
+				<a href="#link1">Dr. Khalid Basalamah, MA.</a>
+			</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Materi Islam</a>
+			<div class="dropdown-content">
+				<a href="#link1">Rumah Tangga</a>
+			</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Kisah Tokoh Muslim</a>
+			<div class="dropdown-content">
+				<a href="#link1">Kisah Sahabat Nabi</a>
+				<a href="#link1">Kisah Nabi dan Rasul</a>
+			</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Ensiklopedi Teknologi</a>
+			<div class="dropdown-content">
+				<a href="#link1">Teknologi</a>
+				<a href="#link1">Istilah dalam Teknologi</a>
+			</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Karya Lanterlite</a>
+			<div class="dropdown-content">
+				<a href="#link1">Aplikasi Android</a>
+				<a href="#link1">Aplikasi Desktop</a>
+				<a href="#link1">Aplikasi Web</a>
+			</div>
+			</li>
+		</ul>
+	</div>
+	<!-- END: LOGO AND NAVBAR -->
+{% endblock %}
+
+{% block content %}
+
+
+	<div id="home-post">
+		<table cellpadding="18px">
+		<thead>
+		<tr>
+			<th rowspan="2"><font color="red" style="font-family:calibri; font-size:30px;">Topik Terfavorit<font></th>
+			<th><font color="blue" style="font-family:calibri; font-size:20px;">Topik Terfavorit lainnya<font></th>
+		</tr>			
+		</thead>
+		<tbody>
+		<tr>
+		<td rowspan="2">
+			<div class="slideshow-container">
+				<div class="mySlides fade">
+					<div class="numbertext">1 / 3</div>
+					<img src="{{ url_for('static', filename='images/mp04.png') }}" style="height:380px; width:700px;"/>
+					<div class="text">Information 1</div>
+				</div>
+
+				<div class="mySlides fade">
+					<div class="numbertext">2 / 3</div>
+					<img src="{{ url_for('static', filename='images/mp05.png') }}" style="height:380px; width:700px;"/>
+					<div class="text">Information 2</div>
+				</div>
+
+				<div class="mySlides fade">
+					<div class="numbertext">3 / 3</div>
+					<img src="{{ url_for('static', filename='images/mp06.png') }}" style="height:380px; width:700px;"/>
+					<div class="text">Information 3</div>
+				</div>
+			</div>
+			<div style="text-align:center">
+				<span class="dot"></span> 
+				<span class="dot"></span> 
+				<span class="dot"></span> 
+			</div>
+		</td>
+			<td><a class="twitter-timeline" data-width="300" data-height="400" data-dnt="true" data-theme="dark" data-link-color="#2B7BB9" href="https://twitter.com/lanterlite">Tweets by lanterlite</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="{{ url_for('static', filename='images/mp03.png') }}" style="height:175px; width:305px;"/></td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+	
+	<div id="home-post-bottom">
+		<table cellpadding="17px">
+		<thead>
+		<tr>
+			<th rowspan="5"><font color="black" style="font-family:calibri; font-size:20px;">Topik Lainnya<font></th>
+		</tr>			
+		</thead>
+		<tbody>
+		<tr>
+			<td><img src="{{ url_for('static', filename='images/mp04.png') }}" style="height:100px; width:180px;"/></td>
+			<td><img src="{{ url_for('static', filename='images/mp05.png') }}" style="height:100px; width:180px;"/></td>
+			<td><img src="{{ url_for('static', filename='images/mp06.png') }}" style="height:100px; width:180px;"/></td>
+			<td><img src="{{ url_for('static', filename='images/mp07.png') }}" style="height:100px; width:180px;"/></td>
+			<td><img src="{{ url_for('static', filename='images/mp05.png') }}" style="height:100px; width:180px;"/></td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+
+		<!-- FOOTER -->
+		<div id="home-post-footer">
+			<table cellpadding="0px">
+			<thead>
+			<tr>
+				<td rowspan="5"><font color="white" style="font-family:Constantia; font-size:20px;">Tentang Lanterlite<font></td>
+			</tr>			
+			</thead>
+			<tbody>
+			<tr>
+				<td><font color=#FFFF00 style="font-family:Constantia;">Saran dan masukkan, bisa pembaca sampaikan melalui email kami di <i>lanterlite@gmail.com</i>.</font></td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<!-- END: FOOTER -->
+{% endblock %}
+
+{% block scripts %}
+	<script>
+		var slideIndex = 0;
+		showSlides();
+
+		function showSlides() {
+			var i;
+			var slides = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("dot");
+			for (i = 0; i < slides.length; i++) {
+			   slides[i].style.display = "none";  
+			}
+			slideIndex++;
+			if (slideIndex> slides.length) {slideIndex = 1}    
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex-1].style.display = "block";  
+			dots[slideIndex-1].className += " active";
+			setTimeout(showSlides, 3000); // Change image every 2 seconds
+		}
+	</script>
+{% endblock %}

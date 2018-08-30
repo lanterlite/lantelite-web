@@ -1,0 +1,375 @@
+	<style>
+		#daftar a:link {text-decoration: none; color: rgb(205,133,63);}
+		#daftar a:visited {text-decoration: none; color: green;}
+		#daftar a:hover {text-decoration: none; color: rgb(244,164,96);}
+		#daftar a:active {text-decoration: none; color: blue;}
+		
+		.codebox {
+			border:1px solid black;
+			background-color:#EEEEFF;
+			width:750px;
+			overflow:auto;    
+			padding:10px;
+		}
+		.codebox code {
+			font-size:0.9em;
+		}
+	</style>
+
+	<p style="font-family:Constantia; font-size:15px;">
+		<b>Tema</b>: Spring MVC Framework</br>
+		<b>Penulis</b>: Ifan Ramadhani</br>
+		<b>Referensi</b>: -
+	</p>
+	
+	<font color="#CD853F" style="font-family:constantia;"><b>Spesifikasi</b></font>
+	<p align="justify" style="font-family:constantia;">
+		<b>Jenis</b>: microservice, framework aplikasi web (backend dan frontend)</br>
+		<b>Sistem Operasi</b>: Lintas platform (Windows, Linux, Mac OS, dlsb)</br>
+		<b>Platform</b>: Java Virtual Machine</br>
+		<b>Bahasa Pemrograman</b>: Java</br>
+		<b>Arsitektur</b>: MVC (Model-View-Controller)</br>
+		<b>Object Relational Model</b>: Hibernate</br>
+		<b>Paradigma Pemrograman</b>: Aspect-oriented programming</br>
+		<b>Design Pattern (AOP)</b>: Proxy pattern</br>
+		<b>Implementasi Modul</b>: Cross-cutting concern</br>
+		<b>Data Access</b>: Relational Database Management System (RDBMS)</br>
+		<b>Container</b>: Inversion of Control (Dependency Injection)</br>
+	</p>
+
+	<font color="#CD853F" style="font-family:constantia;"><b>Implementasi</b></font>
+	<p align="justify" style="font-family:constantia;">
+		<b>IDE</b>: Eclipse Java EE (Neon 4.6.2)</br>
+		<b>Plugin</b>: Spring Tool Suite</br>
+		<b>Database</b>: PostgreSQL 9.5.1</br>
+	</p>
+	<p align="justify" style="font-family:constantia;">
+		<b>Step</b>: </br>
+		Membuat Spring project:</br>
+		&emsp; <font color="rgb(124,193,216)">File>New>Project>Spring><b>Spring Starter Project</b></font></br>
+		</br>
+		Membuat tiga buah <i>package</i>:</br>
+		&emsp; 1. <font color="rgb(124,193,216)">..src/main/java/NamaProject/<b>model/</b></font> </br>
+		&emsp; 2. <font color="rgb(124,193,216)">..src/main/java/NamaProject/<b>controller/</b></font></br>
+		&emsp; 3. <font color="rgb(124,193,216)">..src/main/java/NamaProject/<b>repository/</b></font></br>			
+		</br>
+		Membuat file java untuk setiap <i>package</i>:</br>
+		&emsp; 1. <font color="rgb(124,193,216)">..model/<b>CustomerModel.java</b></font> </br>
+		&emsp; 2. <font color="rgb(124,193,216)">..controller/<b>CustomerController.java</b></font></br>
+		&emsp; 3. <font color="rgb(124,193,216)">..repository/<b>CustomerRepository.java</b></font></br>
+		</br>
+		Membuat tabel "customer" pada pgAdmin dengan <i>attribute</i>:</br>
+		&emsp; 1. <font color="rgb(124,193,216)">id</font> bigint NOT NULL</br>
+		&emsp; 2. <font color="rgb(124,193,216)">name</font> character varying(255)</br>
+		&emsp; 3. <font color="rgb(124,193,216)">address</font> character varying(255)</br>
+		</br>
+		Membuat file HTML sebagai UI:</br>
+		&emsp; <font color="rgb(124,193,216)">..src/main/resources/templates/<b>customer.html</b></font></br>
+		</br>
+
+		<font color="rgb(124,193,216)"><b>CustomerModel.java</b></font>
+		<div class="codebox">
+			<code>   
+<xmp>@Entity
+@Table(name = "customer")
+public class CustomerModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "address")
+	private String address;
+	
+	public Customer() {}
+
+	public Customer(String name, String address) {
+		this.name = name;
+		this.address = address;
+	}
+	
+	public long getId() {
+		return this.id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getAddress() {
+		return this.address;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+}</xmp>
+			</code>
+		</div>
+		</br>
+		<font color="rgb(124,193,216)"><b>CustomerController.java</b></font>
+		<div class="codebox">
+			<code>   
+<xmp>import com.springjpa.model.CustomerModel;
+import com.springjpa.repo.CustomerRepository;
+
+@Controller
+@RequestMapping(value = "/customer")
+
+public class CustomerController {
+	@Autowired
+	CustomerRepository customerRepository;
+
+	@RequestMapping("/show")
+	public String customer(Model model) {
+		List<Customer> customer = (List<Customer>) customerRepository.findAll();		
+		model.addAttribute("customers", customer);
+		return "customer";
+	}
+}</xmp>
+			</code>
+		</div>
+		</br>
+		<font color="rgb(124,193,216)"><b>CustomerRepository.java</b></font>
+		<div class="codebox">
+			<code>   
+<xmp>import com.springjpa.model.CustomerModel;
+
+public interface customerRepository extends CrudRepository<Customer, Long>{
+	List<Customer> findByName(String name);
+}</xmp>
+			</code>
+		</div>
+
+		</br>
+		<font color="rgb(124,193,216)"><b>customer.html</b></font>
+		<div class="codebox">
+			<code>   
+<xmp><!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Customer List</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Staffs</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Address</th>
+		</tr>  
+		<tr th:each = "customer : ${customers}">
+			<td th:text="${customer.id}"></td>
+			<td th:text="${customer.name}"></td>
+			<td th:text="${customer.address}"></td>
+		</tr>
+	</table>
+</body>
+</html></xmp>
+			</code>
+		</div>
+	</p>
+
+	==========================================================================
+	
+	<p style="font-family:Constantia; font-size:15px;">
+		<b>Tema</b>: Hibernate</br>
+		<b>Penulis</b>: Ifan Ramadhani</br>
+		<b>Referensi</b>: -
+	</p>
+	
+	<font color="#CD853F" style="font-family:constantia;"><b>Spesifikasi</b></font>
+	<p align="justify" style="font-family:constantia;">
+		<b>Jenis</b>: Object Relational Mapping</br>
+		<b>Platform</b>: Java Virtual Machine</br>
+		<b>Bahasa Pemrograman</b>: Java</br>
+		<b>Sistem Operasi</b>: Lintas platform (Windows, Linux, Mac OS, dlsb)</br>
+	</p>
+
+	<font color="#CD853F" style="font-family:constantia;"><b>Implementasi</b></font>
+		<p align="justify" style="font-family:constantia;">
+		1. Membuat tiga buah package/ direktori
+		
+			<b>Model</b>, 
+			<b>Controller</b>
+			<b>Repository</b>, berisikan perintah query ke database			
+			
+				Model
+			
+			Controller
+			Repository
+		
+	</p>
+
+	==========================================================================
+	
+	<div id="footer">
+	<p style="font-family:Constantia; font-size:15px;">
+		<b>Tema</b>: Layered Architecture</br>
+		<b>Penulis</b>: Ifan Ramadhani</br>
+		<b>Referensi</b>: -
+	</p>
+	
+	<font color="#CD853F" style="font-family:constantia;"><b>Spesifikasi</b></font>
+	<ul id="ul-content">
+		<li><b>Jenis</b>: Application Architecture Pattern</li>
+		<li><b>Terdiri dari</b>:</li>
+		<ul id="ul-content">
+			<li><font color="rgb(124,193,216)"><b>Presentation Layer</b></font></li>
+			<ul id="ul-content">
+				<li><b>Nama lain</b>: presentation logic, frontend layer, UI layer</li>
+				<li><b>Obyektif</b>: menampilkan UI dan menangani interaksi dari user</li>
+			</ul>
+			<li><font color="rgb(124,193,216)"><b>Service Layer</b></font></li>
+			<ul id="ul-content">
+				<li><b>Nama lain</b>: Web service layer</li>
+				<li><b>Obyektif</b>:</li>
+			</ul>
+			<li><font color="rgb(124,193,216)"><b>Domain Layer</b></font></li>
+			<ul id="ul-content">
+				<li><b>Nama lain</b>: business logic, business layer, domain logic</li>
+				<li><b>Obyektif</b>: mengurus business logic pada aplikasi</li>
+				<li><b>Terdiri dari</b>: domain model dan domain service</li>
+				<ul id="ul-content">
+					<li><font color="rgb(124,193,216)"><b>Domain Model</b></font></li>
+					<ul id="ul-content">
+						<li><b>Nama lain</b>: business model, business object, entity, dlsb</li>
+						<li><b>Paradigma pemrograman</b>: Object Oriented</li>
+						<li><b>Prinsip dasar</b>: satu instance untuk satu class</li>
+						<li><b>Terdiri dari</b>:</li>
+						<ul id="ul-content">
+							<li>Simple Domain Model, interface langsung menghadapi database</li>
+							<li>Rich Domain Model, menggunakan data mapper (membantu data model mengurus database) untuk menghadapi database.</li>
+						</ul>
+						<li><b>Penjelasan tambahan</b>:</li>						
+						<ul id="ul-content">
+							<li>Mirip dengan database model hanya saja domain model lebih luas cakupannya</li>
+							<li>Terdapat di dalamnya, relationship dan behavior</li>
+							<li>Mengurangi duplikasi seperti di transaction script (contoh: mesin atm itu kan itu ada masukin kartu yang semua fungsi di atm juga perlu masukkin kartu).</li>
+							<li>tidak berbicara tentang prosedur</li>
+						</ul>
+					</ul>
+					<li><font color="rgb(124,193,216)"><b>Domain Service</b></font></li>
+					<ul id="ul-content">
+						<li><b>Nama lain</b>: business services, business manager, dlsb</li>
+					</ul>
+					<li><font color="rgb(124,193,216)"><b>Transaction Script</b></font></li>					
+					<ul id="ul-content">
+						<li><b>Nama lain</b>: transaction logic</li>
+						<li><b>Paradigma Pemrograman</b>: struktural/ prosedural</li>
+						<li><b>Prinsip dasar</b>: mengorganisasi bisnis lojik dengan prosedur (berupa script) di mana setiap prosedur menmenangani satu request dari presentasi.</li>
+						<li><b>Kelemahan</b>:</li>
+						<ul id="ul-content">					
+							<li>Ketergantungan antar transaksi masih tinggi</li>
+						</ul>
+					</ul>
+					<li><font color="rgb(124,193,216)"><b>Table Module</b></font></li>
+					<ul id="ul-content">
+						<li><b>Definisi</b>: lojik untuk menangani semua baris (row) dalam tabel database</li>
+						<li><b>Prinsip dasar</b>: satu objek untuk seluruh row yang memungkinkan, satu class yang menyediakan domain logic untuk tabel atau view pada database</li>
+					</ul>
+				</ul>
+			</ul>
+			<li><font color="rgb(124,193,216)"><b>Data Source Layer</b></font></li>			
+			<ul id="ul-content">					
+				<li><b>Nama lain</b>: Data Access Layer (DAL), repository layer, data source logic, infrastructure layer</li>
+				<li><b>Obyektif</b>: berkomunikasi dengan database, memberi pesan kepada sistem, query database, memanggil web service, mengirim e-mail, dlsb</li>
+			</ul>
+		</ul>
+	</ul>
+	</div>
+
+	==========================================================================
+	
+	<p style="font-family:Constantia; font-size:15px;">
+		<b>Tema</b>: Data Source Layer</br>
+		<b>Penulis</b>: Ifan Ramadhani</br>
+		<b>Referensi</b>: -
+	</p>
+
+		Data source layer
+
+			Obyektif dari rancangan data source:
+			
+				agar domain model tidak menggunakan SQL
+				layer yang menjembatani antar domain dengan database
+				akses ke dalam database butuh kepastian
+				data source layer butuh untuk dapat dimaintain
+
+			Data source pattern, (berdasarkan kegunaannya pada domain layer) terdiri dari:
+			
+				Transaction script:
+				
+					Row data gateway (pattern), bertindak sebagai gateway untuk satu record/ row pada data source.
+					
+						Cara kerja:
+						
+							Khusus melakukan aktivitas read/ find pada table data gateway
+
+						Contoh: terdapat objek PersonFinder yang terhubung dengan PersonGateway dan di dalamnya hanya ada method find/ read.
+
+					Table data gateway (pattern)
+					
+						Nama lain: Data Access Object (DAO)
+						Peran: bertindak sebagai gateway pada tabel database (satu gateway untuk satu tabel)
+						Cara kerja:
+						
+							CRUD method (Create, Read, Update, Delete) pada satu tabel.
+
+						Kapan menggunakannya:
+						
+							bisa digunakan pada table module selama berdasar pada record set
+							sangat berguna untuk aplikasi web di mana domain model digunakan
+
+						Contoh: objek PersonGateway, di dalamnya ada atribute person seperti biasa namun ditambahkan method CRUD.
+
+
+				Domain model:
+				
+					Active record (pattern), membungkus satu row pada tabel database, mengenkapsulasi akses ke database, dan menambahkan lojik domain pada datanya
+					Data mapper (pattern)
+					
+						Penjelasan tambahan:
+						
+							sebuah layer yang bertugas memindahkan data antar objek-objek dengan suatu database namun tetap menjaga mereka selalu independen (tidak berketergantungan satu sama lain)
+							menjembatani class person (di dalmnya hanya ada atribute person dan method utility seperti get-set, dlsb) dengan database
+
+						contoh: PersonMapper (di dalamnya hanya terdapat method CUD) yang menghubungkan antara objek Person dengan tabel person pada database
+						kapan menggunakannya:
+						
+							ketika ada keperluan bahwa database dan objek harus independen
+							berguna untuk domain model
+				Table Module
+				
+					Table data gateway (pattern) + record set (pattern)
+		Kamus:
+		lojik bisnis:
+
+			lojik aplikasi = service layer (otentifikasi, keamanan, dlsb)
+			lojik domain = aturan dasar
+
+	</p>
+
+	<style>
+	#ul-content {
+	    list-style-type: circle;
+		background-color: white;
+		padding-left: 20px;
+		overflow: hidden;
+	}
+
+	#footer  li { 
+		font-family: constantia;
+	}
+ 	</style>

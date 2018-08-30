@@ -1,0 +1,104 @@
+<html>
+	<style>
+	#ul-content {
+	    list-style-type: circle;
+		background-color: white;
+		padding-left: 20px;
+		overflow: hidden;
+	}
+
+	#footer  li { 
+		font-family: constantia;
+	}
+ 	</style>
+	<body>
+	<div id="footer">
+	<p style="font-family:Constantia; font-size:15px;">
+		<b>Tema</b>: Layered Architecture</br>
+		<b>Penulis</b>: Ifan Ramadhani</br>
+		<b>Referensi</b>: -
+	</p>
+	
+	<font color="#CD853F" style="font-family:constantia;"><b>Spesifikasi</b></font>
+	<ul id="ul-content">
+		<li><b>Jenis</b>: Application Architecture Pattern</li>
+		<li><b>Terdiri dari</b>:
+			<ul id="ul-content">
+				<li><font color="rgb(124,193,216)"><b>Presentation Layer</b></font>
+					<ul id="ul-content">
+						<li><b>Nama lain</b>: presentation logic, frontend layer, UI layer</li>
+						<li><b>Obyektif</b>: menampilkan UI dan menangani interaksi dari user</li>
+					</ul>
+				</li>
+				<li><font color="rgb(124,193,216)"><b>Service Layer</b></font>
+				<ul id="ul-content">
+					<li><b>Nama lain</b>: Web service layer</li>
+					<li><b>Obyektif</b>: </li>
+				</ul>
+				</li>
+				<li><font color="rgb(124,193,216)"><b>Domain Layer</b></font>
+				<ul id="ul-content">
+					<li><b>Nama lain</b>: business logic, business layer, domain logic</li>
+					<li><b>Obyektif</b>: mengurus business logic pada aplikasi</li>
+					<li><b>Terdiri dari</b>: domain model dan domain service
+					<ul id="ul-content">
+						<li><font color="rgb(124,193,216)"><b>Domain Model</b></font>
+						<ul id="ul-content">
+							<li><b>Nama lain</b>: business model, business object, entity, dlsb</li>
+							<li><b>Paradigma pemrograman</b>: Object Oriented</li>
+							<li><b>Prinsip dasar</b>: satu instance untuk satu class</li>
+							<li><b>Terdiri dari</b>:
+							<ul id="ul-content">
+								<li>Simple Domain Model, interface langsung menghadapi database</li>
+								<li>Rich Domain Model, menggunakan data mapper (membantu data model mengurus database) untuk menghadapi database.</li>
+							</ul>
+							</li>
+							<li><b>Penjelasan tambahan</b>:					
+							<ul id="ul-content">
+								<li>Mirip dengan database model hanya saja domain model lebih luas cakupannya</li>
+								<li>Terdapat di dalamnya, relationship dan behavior</li>
+								<li>Mengurangi duplikasi seperti di transaction script (contoh: mesin atm itu kan itu ada masukin kartu yang semua fungsi di atm juga perlu masukkin kartu).</li>
+								<li>tidak berbicara tentang prosedur</li>
+							</ul>
+							</li>
+						</ul>
+						</li>
+						<li><font color="rgb(124,193,216)"><b>Domain Service</b></font>
+						<ul id="ul-content">
+							<li><b>Nama lain</b>: business services, business manager, dlsb</li>
+						</ul>
+						</li>
+						<li><font color="rgb(124,193,216)"><b>Transaction Script</b></font>					
+						<ul id="ul-content">
+							<li><b>Nama lain</b>: transaction logic</li>
+							<li><b>Paradigma Pemrograman</b>: struktural/ prosedural</li>
+							<li><b>Prinsip dasar</b>: mengorganisasi bisnis lojik dengan prosedur (berupa script) di mana setiap prosedur menmenangani satu request dari presentasi.</li>
+							<li><b>Kelemahan</b>:
+							<ul id="ul-content">					
+								<li>Ketergantungan antar transaksi masih tinggi</li>
+							</ul>
+							</li>
+						</ul>
+						</li>
+						<li><font color="rgb(124,193,216)"><b>Table Module</b></font>
+						<ul id="ul-content">
+							<li><b>Definisi</b>: lojik untuk menangani semua baris (row) dalam tabel database</li>
+							<li><b>Prinsip dasar</b>: satu objek untuk seluruh row yang memungkinkan, satu class yang menyediakan domain logic untuk tabel atau view pada database</li>
+						</ul>
+						</li>
+					</ul>
+					</li>
+				</ul>
+				</li>
+				<li><font color="rgb(124,193,216)"><b>Data Source Layer</b></font>
+				<ul id="ul-content">					
+					<li><b>Nama lain</b>: Data Access Layer (DAL), repository layer, data source logic, infrastructure layer</li>
+					<li><b>Obyektif</b>: berkomunikasi dengan database, memberi pesan kepada sistem, query database, memanggil web service, mengirim e-mail, dlsb</li>
+				</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	</div>
+	</body>
+</html>

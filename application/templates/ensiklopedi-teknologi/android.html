@@ -1,0 +1,202 @@
+<html>
+	<style>
+	#ul-content {
+	    list-style-type: circle;
+		background-color: white;
+		padding-left: 20px;
+		overflow: hidden;
+	}
+
+	#footer  li { 
+		font-family: constantia;
+	}
+ 	</style>
+	<style>
+		#daftar a:link {text-decoration: none; color: rgb(205,133,63);}
+		#daftar a:visited {text-decoration: none; color: green;}
+		#daftar a:hover {text-decoration: none; color: rgb(244,164,96);}
+		#daftar a:active {text-decoration: none; color: blue;}
+		
+		.codebox {
+			border:1px solid black;
+			background-color:#EEEEFF;
+			width:750px;
+			overflow:auto;    
+			padding:10px;
+		}
+		.codebox code {
+			font-size:0.9em;
+		}
+	</style>	<body>
+	<div id="footer">
+	<p style="font-family:Constantia; font-size:15px;">
+		<b>Tema</b>: Android</br>
+		<b>Penulis</b>: Ifan Ramadhani</br>
+		<b>Referensi</b>: Ed Burnette. <i>Hello, Android: Introducing Google's Mobile Development Platform</i>. Edisi Ke-3
+	</p>
+	
+	<font color="#CD853F" style="font-family:constantia;"><b>Android</b></font>
+	<p  style="font-family:Constantia; font-size:15px;">
+		<b>Jenis</b>: Platform Sistem Operasi</br>
+		<b>Pembuat</b>: Google</br>
+		<b>Macam versi</b>: Android 1.5 (Cupcak), Android 2.2 (FroYo), dlsb.</br>
+		<b>Tools yang dibutuhkan</b>:</br>
+		<ul>
+			<li>Android SDK (Software Development Kit)</li>
+			<li>Android Emulator</i>
+		</ul>
+		<b>Perangkat yang perlu diinstal</b>:
+		<ul>
+			<li>Android SDK (Software Development Kit)
+				<ul>
+					<li>SDK Starter Package</li>
+					<li>SDK Components</li>
+				</ul>
+			</li>
+			<li>Android Emulator</i>
+			<li>Android Virtual Device (AVD) sebagai emulator android</li>
+			<li>JDK (Java Development Kit)</li>
+			<li>Sebuah IDE (Integrated Development Environment), misal: Eclipse
+				<ul>
+					<li>Eclipse Plugin: ADT (Android Development Toolkit)</li>
+				</ul>
+			</li>
+		</ul>
+		<b>Langkah</b>:
+		<ul>
+			<li>Instal Eclipse IDE for Java Developers</li>
+			<li>Instal Android SDK</li>
+			<li>Instal Plugin ADT pada Eclipse
+				<ul>
+					<li>Pada Eclipse, Help> Install New Software> Add Site</li>
+					<li>Situs ADT: (https/http):dl-ssl.google.com/android/eclipse/</li>
+				</ul>
+			</li>
+			<li>Membuat program sederhana
+				<ul>
+					<li>Pada Eclipse, File> New> Project> Android> Android Project</li>
+					<li>Isikan project name, build target, app name, dlsb</li>
+					<li>Setelah dibuat, Project> Clean</li>
+				</ul>
+			<li>Optional: Gunakan emulator/ ponsel sungguhan
+				<ul>
+					<li>Gunakan emulator: instal AVD
+					<ul>
+						<li>Pada Eclipse, Window> AVD Manager</li>
+						<li>Isikan name, target, dlsb kemudian klik Create AVD</li>
+					</ul>
+					</li>
+				</ul>
+			</li>
+			<li>Optional: Gunakan ponsel sungguhan
+				<ul>
+					<li>instal Android USB device driver</li>
+					<li>Hubungkan ponsel menggunakan kabel aslinya</li>
+				</ul>
+			</li>
+			<li>Menjalankan program Android
+				<ul>
+					<li>Klik kanan pada ProjectName> Run As> Android Application</li>
+				</ul>
+			</li>			
+			</li>
+		</ul>
+		<b>Izin</b>:
+		<ul>
+			<li>INTERNET (untuk akses internet)</li>
+			<li>READ_CONTACTS (membaca, tanpa mengubah, data kontak pengguna)</li>
+			<li>WRITE_CONTACTS (mengubah, tanpa membaca, data kontak pengguna)</li>
+			<li>RECEIVE_SMS ()</li>
+			<li>ACCESS_COARSE_LOCATION (menggunakan layanan lokasi yang belum jelas seperti cell towers)</li>
+			<li>ACCESS_FINE_LOCATION (menggunakan layanan lokasi yang jelas seperti GPS)</li>
+			</br>
+			Contoh Penerapannya:</br>
+<div class="codebox"><code>   
+<xmp><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.google.android.app.myapp" >
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
+</manifest></xmp></code></div>
+		</ul>
+		<b>Layout Android</b>:
+		<ul>
+			<li>FrameLayout: menyusun komponen-komponen sehingga mereka memulai dari ujung atas kiri pada layar</li>
+			<li>LinearLayout: menyusun komponen-komponen pada satu kolom atau baris</li>
+			<li>RelativeLayout: menyusun komponen-komponen berdasarkan hubungannya satu sama lain atau dengan induknya</li>
+			<li>TableLayout: menyusun komponen-komponen pada baris-baris dan kolom-kolom, mirip dengan tabel pada HTML</li>
+			</br>
+			Parameter: xmlns:android="http://schemas.android.com/apk/res/android"</br>
+			Untuk layar horisontal/landscape, maka android:orientation="horizontal"</br>
+			Untuk layar vertikal/portrait, maka android:orientation="vertical"</br>
+			Contoh Penerapannya:</br>
+<div class="codebox"><code>   
+<xmp><?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/main_title" />
+	<Button
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/continue_label" />
+	<Button
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/new_game_label" />
+	<Button
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/about_label" />
+	<Button
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/exit_label" />
+</LinearLayout></xmp></code></div>
+		</ul>
+
+		<b>Pixel</b>:
+		<ul>
+			<li>px (pixels): titik-titik pada screen</li>
+			<li>in (inches): ukuran seperti yang ada pada penggaris</li>
+			<li>mm (milimeters): ukuran seperti yang ada pada penggaris</li>
+			<li>pt (points): 1/72 inch</li>
+			<li>dp/dip (density-indepenent pixel): abstraksi satuan berdasarkan besaran kepadatan pada layar. Misal pada layar dengan 160 dpi (dots per inch), 1 dp = 1px</li>
+			<li>sp (scale-independent pixels): mirip dengan dp tetapi diskala kembali berdasarkan font size yang diset pengguna</li>
+			</br>
+			Rekomendasi, gunakan:</br>
+			<li>sp: untuk ukuran teks</li>
+			<li>dp/dip: untuk yang lain</li>
+		</ul>
+		
+		<b>Situs Contoh Source code</b>:
+		<ul>
+			<li>http://pragprog.com/titles/eband3</li>
+		</ul>
+
+
+format audio yang mendukung
+• WAV (PCM uncompressed)
+• AAC (Apple iPod format, unprotected)
+• MP3 (MPEG-3)
+• WMA (Windows media audio)
+• AMR (Speech codec)
+• OGG (Ogg Vorbis)∗
+• MIDI (Instruments)
+
+format video yang mendukung
+• MP4 (MPEG-4 low bit rate)
+• H.263 (3GP)
+• H.264 (AVC)
+		
+	</p>
+	<font color="#CD853F" style="font-family:constantia;"><b>Perlu Diketahui</b></font>
+	<p>
+		Aplikasi android yang dirancang untuk versi android yang lebih lama tidak bisa digunakan untuk android dengan versi yang lebih baru. Namun sebaliknya, aplikasi android untuk versi android yang lebih baru bisa digunakan untuk android dengan versi yang lebih lama.
+	</p>
+	</div>
+	</body>
+</html>
